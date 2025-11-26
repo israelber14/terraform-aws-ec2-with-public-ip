@@ -1,0 +1,17 @@
+# Terraform directories and files to ignore
+.terraform/
+.terraform.lock.hcl
+
+# Ignore CI/CD folder
+
+# Terraform state files
+*.tfstate
+*.tfstate.backup
+
+# Crash logs
+crash.log
+crash.*.log
+
+# Windows junk
+Thumbs.db
+*.tmp

@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simple-node-app
+  labels:
+    app: simple-node-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: simple-node-app
+  template:
+    metadata:
+      labels:
+        app: simple-node-app
+    spec:
+      containers:
+      - name: simple-node-app
+        image: <YOUR_ACR_NAME>.azurecr.io/simple-node-app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: NODE_ENV
+          value: "production"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: simple-node-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: simple-node-app
+  ports:
+  - port: 80
+    targetPort: 3000
